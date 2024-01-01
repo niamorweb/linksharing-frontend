@@ -9,7 +9,6 @@ export default function Preview() {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    console.log(linkId);
     if (linkId) {
       fetch(`https://linksharing-backend.vercel.app/links/findById/${linkId}`)
         .then((res) => res.json())

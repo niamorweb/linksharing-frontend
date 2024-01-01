@@ -14,7 +14,6 @@ export default function Discover({ adaptColorBgLink }) {
     fetch("https://linksharing-backend.vercel.app/links")
       .then((response) => response.json())
       .then((data) => {
-        console.log(data.data);
         setData(data.data);
       });
   };
@@ -30,12 +29,9 @@ export default function Discover({ adaptColorBgLink }) {
         return response.json();
       })
       .then((data) => {
-        console.log("Link deleted:", data);
         fetchData();
       })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
+      .catch((error) => {});
   };
 
   const replaceAddresseQuality = (e) => {

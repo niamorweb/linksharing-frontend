@@ -25,7 +25,6 @@ export default function Test() {
       image: imageSrc, // Ajouter l'URL de l'image ici
     };
     dispatch(addDetailsProfileToStore(formData));
-    console.log(data);
   };
 
   const handleFileChange = (event) => {

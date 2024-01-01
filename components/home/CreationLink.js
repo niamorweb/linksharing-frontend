@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import imageCompression from "browser-image-compression";
 import ExistingLink from "./ExistingLink";
 
-export default function Test({
+export default function CreationLink({
   links,
   setLinks,
   listPossibiltyLinks,
@@ -47,6 +47,10 @@ export default function Test({
   };
 
   useEffect(() => {
+    fetchCreatorLink();
+  }, []);
+
+  const fetchCreatorLink = () => {
     if (userReducer.id) {
       fetch(
         `https://linksharing-backend.vercel.app/links/findByCreator/${userReducer.id}`
@@ -58,7 +62,6 @@ export default function Test({
           return res.json();
         })
         .then((data) => {
-          console.log(data.data.length);
           if (data.data.length === 0) {
             setDataExistingLink(null);
             setIsExistingLink(false);
@@ -67,11 +70,9 @@ export default function Test({
             setIsExistingLink(true);
           }
         })
-        .catch((error) => {
-          console.error("Error:", error);
-        });
+        .catch((error) => {});
     }
-  }, []);
+  };
 
   const addLink = () => {
     const newLink = {
@@ -97,9 +98,7 @@ export default function Test({
   };
 
   const onSubmit = async (data) => {
-    console.log(data.links);
     const formData = new FormData();
-    console.log(data.firstName, data.lastName, data.email);
     formData.append("photoFromFront", image); // Utilisez le même nom que le serveur attend pour l'image
     formData.append("firstName", data.firstName);
     formData.append("lastName", data.lastName);
@@ -122,23 +121,44 @@ export default function Test({
       }
 
       const responseData = await response.json();
-      console.log(responseData);
       handleFetchExitingLink();
-    } catch (error) {
-      console.error("Error:", error);
-    }
+    } catch (error) {}
   };
 
   const repeatNumberLink = [1, 2, 3, 4, 5];
+
+  const handleDeleteLink = (linkId) => {
+    fetch(`https://linksharing-backend.vercel.app/links/deleteLink/${linkId}`, {
+      method: "DELETE",
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok.");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        fetchCreatorLink();
+      })
+      .catch((error) => {});
+  };
+
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="bg-slate-100 min-h-screen  md:p-6 flex flex-col"
-    >
+    <form onSubmit={handleSubmit(onSubmit)} className="md:p-6 flex flex-col">
       <div className="flex gap-10">
         {isExistingLink ? (
-          <div className=" px-16 hidden lg:flex justify-center items-start py-16  bg-white  rounded-xl ">
+          <div className="mx-auto px-16 flex flex-col justify-center items-center font-semibold py-16  bg-white  rounded-xl ">
+            <span className="font-semibold text-xl mb-10">
+              Your current link
+            </span>
             <ExistingLink dataExistingLink={dataExistingLink} />
+
+            <button
+              onClick={() => handleDeleteLink(dataExistingLink._id)}
+              className="mt-8 border-2 w-full duration-150 hover:bg-[#EFEBFF] border-[#633cff] text-[#633cff] font-semibold px-5 py-3 rounded-lg "
+            >
+              Delete this link
+            </button>
           </div>
         ) : (
           <div className=" px-16 hidden lg:flex justify-center items-start py-16  bg-white  rounded-xl ">
@@ -198,23 +218,13 @@ export default function Test({
           </div>
         )}
 
-        {isExistingLink ? (
-          <div className="flex w-full lg:w-3/5 flex-col  bg-white  rounded-xl">
-            <div className="flex p-16  flex-col gap-4">
-              <span className="font-semibold text-xl mb-10">
-                Your current link
-              </span>
-              <button className="bg-red-400 py-3 px-8 font-bold">
-                Delete this link
-              </button>
-            </div>
-          </div>
-        ) : (
+        {!isExistingLink && (
           <div className="flex w-full lg:w-3/5 flex-col  bg-white  rounded-xl">
             <div className="flex p-16  flex-col gap-4 border-b border-b-gray-300">
-              <span className="font-bold text-3xl">Profile Details</span>
+              <span className="font-bold text-3xl">Customize your links</span>
               <span className="text-gray-700">
-                Add your details to create a personal touch to your profile.
+                Add/edit/remove links below and then share all your profiles
+                with the world
               </span>
               <div className="bg-[#fafafa] flex items-center gap-4 p-8">
                 <span className="text-sm text-gray-500">Profile picture</span>
@@ -243,19 +253,19 @@ export default function Test({
                   Image must be below 1024x1024px. Use PNG or JPG format.
                 </span>
               </div>
-
               <div className="bg-[#fafafa] flex flex-col  gap-4 p-8">
                 <div className="flex items-center justify-between gap-4">
                   <span>First name*</span>
 
                   <div className="flex flex-col w-3/4 gap-1 ">
                     <input
+                      placeholder="e.g. John"
                       type="text"
                       {...register("firstName", {
                         required: true,
                         maxLength: 10,
                       })}
-                      className="w-full px-4 py-2 outline outline-[2px] outline-gray-200 rounded-sm focus:outline-2 focus:outline-[#633cff] "
+                      className="w-full focus:shadow-[0_0_32px_0_rgba(99,60,255,.25)] px-4 py-2 outline outline-[2px] outline-gray-200 rounded-sm focus:outline-2 focus:outline-[#633cff] "
                     />
                     {errors.firstName && (
                       <p className="text-xs text-red-600">
@@ -270,12 +280,13 @@ export default function Test({
                   <span>Last name*</span>
                   <div className="flex flex-col w-3/4 gap-1 ">
                     <input
+                      placeholder="e.g. Appleseed"
                       type="text"
                       {...register("lastName", {
                         required: true,
                         maxLength: 10,
                       })} // Enregistrement avec validation requise
-                      className="w-full px-4 py-2 outline outline-[2px] outline-gray-200 rounded-sm focus:outline-2 focus:outline-[#633cff]"
+                      className="duration-150 focus:shadow-[0_0_32px_0_rgba(99,60,255,.25)] w-full px-4 py-2 outline outline-[2px] outline-gray-200 rounded-sm focus:outline-2 focus:outline-[#633cff]"
                     />
                     {errors.lastName && (
                       <p className="text-xs text-red-600">
@@ -288,19 +299,25 @@ export default function Test({
 
                 <div className="flex items-center justify-between gap-4">
                   <span>Email</span>
-                  <input
-                    type="text"
-                    {...register("email", { pattern: /^\S+@\S+$/i })} // Validation du format email
-                    className=" w-3/4 px-4 py-2 outline outline-[2px] outline-gray-200 rounded-sm focus:outline-2 focus:outline-[#633cff]"
-                  />
-                  {errors.email && <p>Invalid email address.</p>}
+                  <div className="flex flex-col w-3/4 gap-1 ">
+                    <input
+                      placeholder="e.g. email@example.com"
+                      type="text"
+                      {...register("email", { pattern: /^\S+@\S+$/i })} // Validation du format email
+                      className=" duration-150  focus:shadow-[0_0_32px_0_rgba(99,60,255,.25)] text-sm px-4 py-2 outline outline-[2px] outline-gray-200 rounded-sm focus:outline-2 focus:outline-[#633cff]"
+                    />
+                    {errors.email && (
+                      <p className="text-xs text-red-600">
+                        Invalid email address.
+                      </p>
+                    )}
+                  </div>
                 </div>
               </div>
-
               <button
                 type="button"
                 onClick={addLink}
-                className="mt-8 border border-[#633cff] text-[#633cff] font-semibold px-5 py-3 rounded-lg"
+                className="mt-8 border-2 w-full duration-150 hover:bg-[#EFEBFF] border-[#633cff] text-[#633cff] font-semibold px-5 py-3 rounded-lg "
               >
                 + Add new url
               </button>
@@ -320,7 +337,7 @@ export default function Test({
                     <span className="text-sm">Platform</span>
 
                     <select
-                      className="px-4 py-2  outline outline-[2px] outline-gray-200 rounded-sm focus:outline-2 focus:outline-[#633cff]"
+                      className="px-4 py-2 duration-150  focus:shadow-[0_0_32px_0_rgba(99,60,255,.25)]  outline outline-[2px] outline-gray-200 rounded-sm focus:outline-2 focus:outline-[#633cff]"
                       {...register(`links[${index}].name`)}
                       required={true}
                       onChange={(e) => {
@@ -340,17 +357,24 @@ export default function Test({
 
                   <div className="flex flex-col gap-2 mt-5">
                     <span className="text-sm">Link</span>
-                    <input
-                      className="px-4 py-2 outline outline-[2px] outline-gray-200 rounded-sm focus:outline-2 focus:outline-[#633cff]"
-                      type="text"
-                      required={true}
-                      {...register(`links[${index}].url`, {
-                        pattern: {
-                          value: findRegex(url) || "",
-                          message: `Veuillez entrer une URL valide pour ${url.name}`,
-                        },
-                      })}
-                    />
+                    <div className="relative">
+                      <img
+                        className="absolute left-3 top-1/2 -translate-y-1/2"
+                        src="icons/icon-link.svg"
+                        alt=""
+                      />
+                      <input
+                        className="w-full duration-150  focus:shadow-[0_0_32px_0_rgba(99,60,255,.25)] pl-10 pr-4 py-2 outline outline-[2px] outline-gray-200 rounded-sm focus:outline-2 focus:outline-[#633cff]"
+                        type="text"
+                        required={true}
+                        {...register(`links[${index}].url`, {
+                          pattern: {
+                            value: findRegex(url) || "",
+                            message: `Veuillez entrer une URL valide pour ${url.name}`,
+                          },
+                        })}
+                      />
+                    </div>
                     {errors.links &&
                       errors.links[index] &&
                       errors.links[index].url && (
@@ -366,7 +390,7 @@ export default function Test({
             <div className="p-8 w-full flex flex-col">
               <button
                 type="submit"
-                className="bg-[#633cff] rounded-lg text-white px-7 font-semibold py-3 self-end"
+                className="bg-[#633cff] duration-150 hover:bg-[#beadff] hover:shadow-[0_0_32px_0_rgba(99,60,255,.25)] rounded-lg text-white px-7 font-semibold py-3 self-end"
               >
                 Save
               </button>
