@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <footer className="px-6 md:px-10 flex justify-center bg-neutral-100 ">
       <div className="w-full py-10 flex flex-col lg:flex-row gap-8 justify-between lg:items-center ">
-        <div className="flex text-lg items-center gap-8 font-medium text-gray">
+        <div className="flex items-center gap-8 font-medium text-gray">
           <Link
             className="hover:underline underline-offset-2 duration-150"
             href="/"

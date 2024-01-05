@@ -36,7 +36,7 @@ export default function Dashboard() {
               <AddPhotos setDisplayPopupAddPhoto={setDisplayPopupAddPhoto} />
             )}
             <div className="mx-auto px-3 md:px-0 flex flex-col md:flex-row gap-10">
-              <div className="w-1/6 hidden md:flex md:flex-col items-start text-sm lg:text-xl mt-8">
+              <div className="w-1/6 hidden md:flex md:flex-col items-start text-sm md:text-base mt-8">
                 {navItems.map((x) => (
                   <button
                     onClick={() => setSectionSelected(x)}

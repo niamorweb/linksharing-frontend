@@ -53,14 +53,14 @@ export default function DashboardSection() {
       <div className="flex gap-4 items-center">
         <button
           onClick={() => handleCopyLink()}
-          className="text-lg md:text-xl font-bold text-white bg-bluePurple px-8 py-3 md:px-10 md:py-5 rounded-xl"
+          className="px-3 md:px-4 py-1 md:py-2 border-2  rounded-md md:rounded-lg bg-bluePurple text-white duration-150 hover:text-white hover:bg-bluePurple hover:border-white hover:scale-105 "
         >
           {copyText}
         </button>
         <Link
           href={`/preview/${userReducer.username}`}
           target="_blank"
-          className="rounded-lg text-lg  text-bluePurple px-14 font-semibold py-4 self-start duration-150 hover:scale-[101%] border-2 border-bluePurple"
+          className="px-3 md:px-4 py-1 md:py-2  text-bluePurple rounded-md md:rounded-lg  border-2 border-bluePurple duration-150 "
         >
           View page
         </Link>

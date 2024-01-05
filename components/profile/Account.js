@@ -71,7 +71,7 @@ export default function Account() {
               type="password"
             />
           </div>
-          <button className="text-lg md:text-xl font-bold text-white bg-bluePurple px-8 py-3 md:px-10 md:py-5 rounded-xl">
+          <button className="px-3 md:px-4 py-1 md:py-2 border-2  rounded-md md:rounded-lg bg-bluePurple text-white duration-150 hover:text-white hover:bg-bluePurple hover:border-white hover:scale-105 ">
             Update
           </button>
         </div>
@@ -79,7 +79,7 @@ export default function Account() {
         <div className="mt-10 flex flex-col gap-4">
           <button
             onClick={() => handleLogout()}
-            className="rounded-lg text-lg  text-bluePurple px-14 font-semibold py-4 self-start duration-150 hover:scale-[101%] border-2 border-bluePurple"
+            className="px-3 md:px-4 py-1 md:py-2  rounded-md md:rounded-lg bg-white text-bluePurple duration-150 hover:scale-[101%] border-2 border-bluePurple "
           >
             Logout
           </button>

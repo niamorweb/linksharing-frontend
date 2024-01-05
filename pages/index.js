@@ -25,7 +25,7 @@ export default function Index() {
         <main className=" mb-32 relative z-10">
           <div className="max-w-[1400px] mx-auto px-10 py-20 lg:justify-center flex flex-col-reverse lg:flex-row gap-10 lg:items-center">
             <div className="lg:w-3/5 flex flex-col gap-8 items-start">
-              <h1 className="font-bold text-darkPurple text-4xl leading-10 md:text-[90px] md:leading-[90%]">
+              <h1 className="font-bold text-darkPurple text-2xl leading-10 md:text-[60px] md:leading-[90%]">
                 The place for all Photographs
               </h1>
               <span className="text-lg text-neutral-500">
@@ -33,7 +33,7 @@ export default function Index() {
                 beautifully told.
               </span>
               <Link
-                className="text-lg md:text-xl font-bold text-white bg-bluePurple px-8 py-3 md:px-10 md:py-5 rounded-xl"
+                className="md:text-lg font-semibold text-white bg-bluePurple px-6 py-2 md:px-8 md:py-3 rounded-xl"
                 href={userReducer.id ? "dashboard" : "/signup"}
               >
                 {userReducer.id ? "Dashboard" : "Get started"}
@@ -61,7 +61,7 @@ export default function Index() {
                 Share your beautiful pictures to the rest of the world.
               </span>
               <Link
-                className="text-lg md:text-xl font-bold text-white bg-bluePurple px-8 py-3 md:px-10 md:py-5 rounded-xl"
+                className="md:text-lg font-semibold text-white bg-bluePurple px-6 py-2 md:px-8 md:py-3 rounded-xl"
                 href={userReducer.id ? "dashboard" : "/signup"}
               >
                 {userReducer.id ? "Dashboard" : "Get started"}

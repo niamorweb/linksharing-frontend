@@ -12,7 +12,7 @@ export default function Header() {
           ZOKA
         </Link>
         {userReducer.id ? (
-          <div className="flex md:text-xl items-center gap-2 md:gap-6 text-gray font-medium">
+          <div className="flex text-sm md:text-base items-center gap-2 md:gap-6 text-gray font-medium">
             <Link
               className="duration-150 underline-offset-2 hover:underline"
               href="/upgrade"
@@ -21,13 +21,13 @@ export default function Header() {
             </Link>
             <Link
               href="/dashboard"
-              className="text-lg md:text-xl font-bold text-white bg-bluePurple px-8 py-3 md:px-10 md:py-5 rounded-xl"
+              className="px-3 md:px-4 py-1 md:py-2 border-2  rounded-md md:rounded-lg bg-bluePurple text-white duration-150 hover:text-white hover:bg-bluePurple hover:border-white hover:scale-105 "
             >
               Dashboard
             </Link>
           </div>
         ) : (
-          <div className="flex md:text-xl items-center gap-2 md:gap-6 text-gray font-medium">
+          <div className="flex text-sm md:text-base items-center gap-2 md:gap-6 text-gray font-medium">
             <Link
               className="duration-150 underline-offset-2 hover:underline"
               href="/login"
@@ -36,7 +36,7 @@ export default function Header() {
             </Link>
             <Link
               href="/signup"
-              className="px-3 md:px-6 py-2 md:py-3 border-2 md:font-bold rounded-md md:rounded-2xl bg-bluePurple text-white duration-150 hover:text-white hover:bg-bluePurple hover:border-white hover:scale-105 "
+              className="px-3 md:px-4 py-1 md:py-2 border-2  rounded-md md:rounded-lg bg-bluePurple text-white duration-150 hover:text-white hover:bg-bluePurple hover:border-white hover:scale-105 "
             >
               Signup
             </Link>
