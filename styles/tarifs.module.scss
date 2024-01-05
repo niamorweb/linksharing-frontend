@@ -1,0 +1,218 @@
+.switch::before {
+  top: 10px;
+  position: absolute;
+  content: "Monthly";
+  right: 80px;
+}
+
+.switch::after {
+  top: 10px;
+  position: absolute;
+  content: "Annually";
+  left: 80px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: gray;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: #000;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+}
+
+input:focus + .slider {
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.pricing__subscriptions__price {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  padding: 80px 0;
+  width: 80%;
+  margin: auto;
+
+  .subscriptions-choice {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .standard-offer {
+    background-color: gray;
+
+    .button {
+      background-color: #000;
+      color: white;
+      transition: 0.3s;
+
+      &:hover {
+        background: transparent;
+        outline: 2px solid black;
+        color: black;
+      }
+    }
+  }
+
+  .best-offer {
+    background-color: black;
+    color: gray;
+    position: relative;
+
+    &::before {
+      content: "";
+      width: 100%;
+      height: 3px;
+      position: absolute;
+      background: linear-gradient(90deg, #ffc694, #bc7198, #5776ff);
+      top: 0;
+    }
+    .button {
+      background-color: white;
+      color: black;
+      transition: 0.3s;
+
+      &:hover {
+        background: transparent;
+        outline: 2px solid white;
+        color: white;
+      }
+    }
+  }
+
+  .card-price {
+    margin: auto;
+    padding: 40px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 30px;
+    border-radius: 5px;
+
+    .price-and-time {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      .price {
+        font-size: 2rem;
+        font-weight: 100;
+        letter-spacing: 3px;
+      }
+    }
+
+    .button {
+      padding: 14px 20px;
+      width: 100%;
+      border: none;
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+    }
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .card-price {
+    display: grid !important;
+    grid-template-columns: repeat(3, auto);
+    grid-template-rows: repeat(3, auto);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+
+    .name-offer {
+      grid-area: 1 / 1 / 2 / 3;
+      text-align: left;
+    }
+    .description-offer {
+      grid-area: 2 / 1 / 3 / 3;
+      text-align: left;
+    }
+    .button {
+      grid-area: 3 / 1 / 4 / 3;
+    }
+    .price-and-time {
+      grid-area: 1 / 3 / 4 / 4;
+      align-self: flex-start;
+      align-items: flex-end !important;
+    }
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .pricing__subscriptions__price {
+    gap: 80px;
+  }
+  .subscriptions-choice {
+    flex-direction: row !important;
+    gap: 20px !important;
+
+    .card-price {
+      display: flex !important;
+    }
+
+    .description-offer {
+      text-align: center;
+    }
+
+    .price-and-time {
+      align-items: center !important;
+      margin: auto;
+    }
+
+    .best-offer {
+      margin: -30px 0;
+      padding: 79px 30px;
+    }
+  }
+}

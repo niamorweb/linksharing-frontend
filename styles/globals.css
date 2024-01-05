@@ -17,7 +17,7 @@
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
@@ -28,10 +28,6 @@ body {
     rgb(var(--background-start-rgb));
 }
 
-* {
-  font-family: "Instrument Sans", sans-serif;
-}
-
 .pattern_bg {
   background-color: #e5e5f7;
   opacity: 0.2;
@@ -40,4 +36,180 @@ body {
     linear-gradient(225deg, #444cf7 25%, transparent 25%) -10px 0/ 20px 20px,
     linear-gradient(315deg, #444cf755 25%, transparent 25%) 0px 0/ 20px 20px,
     linear-gradient(45deg, #444cf7 25%, #e5e5f7 25%) 0px 0/ 20px 20px;
+}
+
+//// TARIFS /////////////
+
+.switch::before {
+  top: 10px;
+  position: absolute;
+  content: "Monthly";
+  right: 80px;
+}
+
+.switch::after {
+  top: 10px;
+  position: absolute;
+  content: "Annually";
+  left: 80px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: #000;
+  transition: 0.4s;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.photographs_title {
+  text-shadow: 1px 2px 2px black;
+}
+
+.slick-slide {
+  transition: 0.5s ease;
+}
+.slick-slide.slick-active.slick-center.slick-current {
+  padding: 10px 10px;
+}
+
+.bg_home {
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    0deg,
+    rgba(2, 0, 36, 0.012427322003019992) 0%,
+    rgba(63, 65, 166, 0.2617270418909752) 84%
+  );
+}
+
+.preview-scrollbar::-webkit-scrollbar {
+  height: 5px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+/* Couleur de fond de la barre de défilement */
+.preview-scrollbar::-webkit-scrollbar-track {
+  background-color: #3f41a620;
+}
+
+/* Style de la poignée (thumb) de la barre de défilement */
+.preview-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #3f41a6;
+}
+
+/* .input_connexion {
+  width: 100%;
+  transition-duration: 150ms;
+  padding: 10px 20px;
+  outline: 1px solid;
+  outline-width: 2px;
+  outline-color: #cbd5e0;
+  border-radius: 0.125rem;
+}
+
+.input_connexion:focus {
+  box-shadow: 0 0 32px 0 rgba(99, 60, 255, 0.25);
+  outline-color: #633cff;
+}
+
+.text-lg md:text-xl font-bold text-white bg-bluePurple px-8 py-3 md:px-10 md:py-5 rounded-xl {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: white;
+  background-color: #6b46c1;
+  padding: 0.75rem 2rem;
+  border-radius: 1rem;
+}
+
+.rounded-lg text-lg  text-bluePurple px-14 font-semibold py-4 self-start duration-150 hover:scale-[101%] border-2 border-bluePurple {
+  border-radius: 0.5rem;
+  font-size: 1.25rem;
+  color: #6b46c1;
+  padding: 1rem 3.5rem;
+  font-weight: 600;
+  align-self: flex-start;
+  transition-duration: 150ms;
+  border: 2px solid #6b46c1;
+}
+
+.rounded-lg text-lg  text-bluePurple px-14 font-semibold py-4 self-start duration-150 hover:scale-[101%] border-2 border-bluePurple:hover {
+  transform: scale(1.01);
+}
+
+.font-bold text-darkPurple text-4xl leading-10 md:text-6xl md:leading-[90%] {
+  font-weight: bold;
+  color: #553c9a;
+  font-size: 2.5rem;
+  line-height: 2.5rem;
+}
+
+.font-bold text-darkPurple text-4xl md:text-[48px] md:leading-[125%] {
+  font-weight: bold;
+  color: #553c9a;
+  font-size: 2.5rem;
+  line-height: 3.125rem;
+}
+
+.font-bold text-darkPurple text-4xl md:text-[48px] md:leading-[125%] {
+  font-size: 48px;
+  line-height: 125%;
+}
+
+.text-lg text-neutral-500 {
+  font-size: 1.25rem;
+  color: #a0aec0;
+} */
+
+.slick-prev:before,
+.slick-next:before {
+  color: black !important ;
+  font-size: 53px !important;
+  box-shadow: 3px 3px 3px #ffffff20 !important;
+  opacity: 1 !important;
+}
+
+.slick-prev {
+  left: -60px !important;
 }

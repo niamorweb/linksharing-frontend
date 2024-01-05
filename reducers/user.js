@@ -4,7 +4,6 @@ const initialState = {
   value: {
     id: null,
     username: null,
-    isAdmin: false,
   },
 };
 
@@ -15,7 +14,6 @@ export const userSlice = createSlice({
     addUserToStore: (state, action) => {
       state.value.id = action.payload.id;
       state.value.username = action.payload.username;
-      state.value.isAdmin = action.payload.isAdmin;
     },
     removeUserFromStore: (state, action) => {
       state.value.id = null;
