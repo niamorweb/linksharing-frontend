@@ -16,7 +16,7 @@ export default function DashboardSection() {
 
   const handleFetchUserPhotos = () => {
     axios
-      .get(`http://localhost:3000/users/${userReducer.id}`)
+      .get(`https://linksharing-backend.vercel.app/users/${userReducer.id}`)
       .then((response) => {
         if (response.data.result === true) {
           setUserData(response.data.data);
@@ -38,7 +38,7 @@ export default function DashboardSection() {
 
   const handleCopyLink = (url) => {
     navigator.clipboard.writeText(
-      `http://localhost:3000/preview/${userReducer.username}`
+      `https://linksharing-backend.vercel.app/preview/${userReducer.username}`
     );
     setCopyText("Link copied !");
     setTimeout(() => {

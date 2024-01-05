@@ -19,7 +19,7 @@ export default function SignupSection() {
   const onSubmitSignUp = (data) => {
     console.log(data);
     axios
-      .post("http://localhost:3000/users/signup", {
+      .post("https://linksharing-backend.vercel.app/users/signup", {
         username: data.username,
         email: data.email,
         password: data.password,

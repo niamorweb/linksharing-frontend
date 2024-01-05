@@ -20,7 +20,7 @@ export default function Account() {
 
   const handleFetchUserData = () => {
     axios
-      .get(`http://localhost:3000/users/${userReducer.id}`)
+      .get(`https://linksharing-backend.vercel.app/users/${userReducer.id}`)
       .then((response) => {
         if (response.data.result === true) {
           setUsername(response.data.data.username);

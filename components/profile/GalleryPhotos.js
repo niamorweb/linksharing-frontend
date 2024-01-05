@@ -16,7 +16,7 @@ export default function GalleryPhotos({
 
   const handleFetchUserPhotos = () => {
     axios
-      .get(`http://localhost:3000/users/${userReducer.id}`)
+      .get(`https://linksharing-backend.vercel.app/users/${userReducer.id}`)
       .then((response) => {
         if (response.data.result === true) {
           setExistingPhotos(response.data.data.photos);
@@ -30,7 +30,7 @@ export default function GalleryPhotos({
   const handleDeletePhoto = (photoUrl) => {
     axios
       .delete(
-        `http://localhost:3000/users/deletePhoto/${userReducer.id}?photoUrl=${photoUrl}`
+        `https://linksharing-backend.vercel.app/users/deletePhoto/${userReducer.id}?photoUrl=${photoUrl}`
       )
       .then((response) => {
         console.log("Supression réussie :", response);

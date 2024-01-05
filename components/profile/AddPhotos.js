@@ -36,7 +36,7 @@ export default function AddPhotos({ setDisplayPopupAddPhoto }) {
     });
     axios
       .post(
-        `http://localhost:3000/users/uploadPhotos/${userReducer.id}`,
+        `https://linksharing-backend.vercel.app/users/uploadPhotos/${userReducer.id}`,
         formData
       )
       .then((response) => {

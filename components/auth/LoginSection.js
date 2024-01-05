@@ -19,7 +19,7 @@ export default function LoginSection({ setSectionDisplayed }) {
   const onSubmitLogin = (data) => {
     console.log(data);
     axios
-      .post("http://localhost:3000/users/signin", {
+      .post("https://linksharing-backend.vercel.app/users/signin", {
         username: data.username,
         password: data.password,
       })

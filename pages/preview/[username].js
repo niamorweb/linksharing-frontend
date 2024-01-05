@@ -15,7 +15,9 @@ export default function Preview() {
 
   const fetchUser = () => {
     axios
-      .get(`http://localhost:3000/users/findByUsername/${username}`)
+      .get(
+        `https://linksharing-backend.vercel.app/users/findByUsername/${username}`
+      )
       .then((response) => {
         setDataPreview(response.data.data);
       })

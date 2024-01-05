@@ -26,7 +26,7 @@ export default function PersonnalInformations() {
 
       axios
         .put(
-          `http://localhost:3000/users/updateProfilePicture/${userReducer.id}`,
+          `https://linksharing-backend.vercel.app/users/updateProfilePicture/${userReducer.id}`,
           formData
         )
         .then((response) => {
@@ -41,7 +41,7 @@ export default function PersonnalInformations() {
 
   const handleFetchUserPhotos = () => {
     axios
-      .get(`http://localhost:3000/users/${userReducer.id}`)
+      .get(`https://linksharing-backend.vercel.app/users/${userReducer.id}`)
       .then((response) => {
         setDescription(response.data.data.description);
         setName(response.data.data.name);
@@ -59,7 +59,10 @@ export default function PersonnalInformations() {
     };
 
     axios
-      .put(`http://localhost:3000/users/updateInfos/${userReducer.id}`, infos)
+      .put(
+        `https://linksharing-backend.vercel.app/users/updateInfos/${userReducer.id}`,
+        infos
+      )
       .then((response) => {
         console.log("Données mises à jour avec succès :", response.data);
       })
