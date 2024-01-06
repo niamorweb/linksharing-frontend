@@ -2,13 +2,13 @@ import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import ChangeBanner from "./ChangeBanner";
+import LinksForm from "./LinksForm";
 
 export default function PersonnalInformations() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState(null);
   const [displayedImage, setDisplayedImage] = useState(null);
-  const [isChangeBannerDisplayed, setIsChangeBannerDisplayed] = useState(false);
 
   const userReducer = useSelector((state) => state.user.value);
 
@@ -114,25 +114,10 @@ export default function PersonnalInformations() {
               Change profile picture
             </button>
           </div>
-          <div className="flex gap-3 items-center">
-            <img
-              className="h-[200px]"
-              src="https://images.unsplash.com/photo-1511884642898-4c92249e20b6?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              alt=""
-            />
-            <button
-              onClick={() => setIsChangeBannerDisplayed(true)}
-              className="px-3 md:px-4 py-1 md:py-2  text-bluePurple rounded-md md:rounded-lg  border-2 border-bluePurple duration-150 "
-            >
-              Change banner profile
-            </button>
-            {isChangeBannerDisplayed && (
-              <ChangeBanner
-                setIsChangeBannerDisplayed={setIsChangeBannerDisplayed}
-              />
-            )}
-          </div>
+
+          <ChangeBanner />
         </div>
+        <LinksForm />
         <input
           onChange={handleFileChange}
           accept="image/*"

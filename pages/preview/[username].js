@@ -45,7 +45,7 @@ export default function Preview() {
   const replaceAddresseQuality = (e) => {
     const editedAddresse = e.replace(
       /\/upload\/[^/]+/,
-      "/upload/w_400,c_scale"
+      "/upload/w_800,c_scale"
     );
     return editedAddresse;
   };
@@ -80,11 +80,13 @@ export default function Preview() {
 
         <div className="w-full h-[110vh] overflow-hidden relative text-white">
           <div className="absolute left-0 top-0 h-full w-full bg-black/30 lg:bg-transparent lg:bg-gradient-to-r lg:from-[#00000094] lg:to-[#0000000d]"></div>
-          <img
-            className="w-full h-full object-cover"
-            src="https://images.unsplash.com/photo-1511884642898-4c92249e20b6?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt=""
-          />
+          {dataPreview && (
+            <img
+              className="w-full h-full object-cover"
+              src={dataPreview.photoBanner}
+              alt=""
+            />
+          )}
           <div className="absolute bottom-[17%] left-10 z-20">
             {dataPreview && (
               <div className="rounded-xl p-6">
@@ -125,36 +127,37 @@ export default function Preview() {
                     </div>
                   </div>
                   <div className="flex gap-4 items-center mt-10">
-                    {linksDemo.map((x) => (
-                      <Link
-                        href={`https://${x}.com`} // Remplacez ceci par le chemin de votre favicon
-                        className="flex items-center py-2 gap-2 rounded-full bg-black bg-opacity-20 px-3 backdrop-blur-md transition duration-700 ease-in-out hover:bg-white hover:text-black hover:duration-300"
-                        target="_blank"
-                      >
-                        <img
-                          src={`https://s2.googleusercontent.com/s2/favicons?domain=www.${x}.com`} // Chemin vers le favicon (modifiez ceci)
-                          alt={`Favicon de ${x}`}
-                          className="w-4 h-4"
-                        />
-                        <span className="uppercase font-semibold tracking-wider text-sm">
-                          {x}
-                        </span>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          strokeWidth={1.5}
-                          stroke="currentColor"
-                          className="w-4 h-4"
+                    {dataPreview.links.length > 0 &&
+                      dataPreview.links.map((x) => (
+                        <Link
+                          href={x.url} // Remplacez ceci par le chemin de votre favicon
+                          className="flex items-center py-2 gap-2 rounded-full bg-black bg-opacity-20 px-3 backdrop-blur-md transition duration-700 ease-in-out hover:bg-white hover:text-black hover:duration-300"
+                          target="_blank"
                         >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="m8.25 4.5 7.5 7.5-7.5 7.5"
+                          <img
+                            src={`https://s2.googleusercontent.com/s2/favicons?domain=${x.url}`} // Chemin vers le favicon (modifiez ceci)
+                            alt={`Favicon de ${x}`}
+                            className="w-4 h-4"
                           />
-                        </svg>
-                      </Link>
-                    ))}
+                          <span className="uppercase font-semibold tracking-wider text-sm">
+                            {x.name}
+                          </span>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth={1.5}
+                            stroke="currentColor"
+                            className="w-4 h-4"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="m8.25 4.5 7.5 7.5-7.5 7.5"
+                            />
+                          </svg>
+                        </Link>
+                      ))}
                   </div>
                 </div>
               </div>
