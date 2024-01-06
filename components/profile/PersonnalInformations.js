@@ -1,12 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
+import ChangeBanner from "./ChangeBanner";
 
 export default function PersonnalInformations() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState(null);
   const [displayedImage, setDisplayedImage] = useState(null);
+  const [isChangeBannerDisplayed, setIsChangeBannerDisplayed] = useState(false);
 
   const userReducer = useSelector((state) => state.user.value);
 
@@ -81,35 +83,55 @@ export default function PersonnalInformations() {
         My informations
       </span>
       <div className="flex flex-col gap-4">
-        <div className="flex justify-start items-center gap-6 border-b-2 border-b-neutral-200 pb-10 mb-5">
-          {displayedImage ? (
+        <div className="flex justify-between items-center w-full">
+          <div className="flex justify-start items-center gap-6 border-b-2 border-b-neutral-200 pb-10 mb-5">
+            {displayedImage ? (
+              <img
+                className="w-32 h-32 rounded-full"
+                src={displayedImage}
+                alt=""
+              />
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-32 h-32"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                />
+              </svg>
+            )}{" "}
+            <button
+              onClick={() => handleClick()}
+              className="px-3 md:px-4 py-1 md:py-2  text-bluePurple rounded-md md:rounded-lg  border-2 border-bluePurple duration-150 "
+            >
+              Change profile picture
+            </button>
+          </div>
+          <div className="flex gap-3 items-center">
             <img
-              className="w-32 h-32 rounded-full"
-              src={displayedImage}
+              className="h-[200px]"
+              src="https://images.unsplash.com/photo-1511884642898-4c92249e20b6?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               alt=""
             />
-          ) : (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-32 h-32"
+            <button
+              onClick={() => setIsChangeBannerDisplayed(true)}
+              className="px-3 md:px-4 py-1 md:py-2  text-bluePurple rounded-md md:rounded-lg  border-2 border-bluePurple duration-150 "
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+              Change banner profile
+            </button>
+            {isChangeBannerDisplayed && (
+              <ChangeBanner
+                setIsChangeBannerDisplayed={setIsChangeBannerDisplayed}
               />
-            </svg>
-          )}{" "}
-          <button
-            onClick={() => handleClick()}
-            className="rounded-lg text-lg  text-bluePurple px-14 font-semibold py-4 self-start duration-150 hover:scale-[101%] border-2 border-bluePurple"
-          >
-            Change profile picture
-          </button>
+            )}
+          </div>
         </div>
         <input
           onChange={handleFileChange}

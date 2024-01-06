@@ -8,6 +8,7 @@ export default function GalleryPhotos({
   displayPopupAddPhoto,
 }) {
   const [existingPhotos, setExistingPhotos] = useState();
+  const [isOverlayDelete, setIsOverlayDelete] = useState(false);
   const userReducer = useSelector((state) => state.user.value);
 
   useEffect(() => {
@@ -53,35 +54,50 @@ export default function GalleryPhotos({
 
   return (
     <div className="w-full bg-neutral-50 shadow-md flex flex-col gap-8 py-10 px-8 rounded-lg">
-      <span className="text-3xl text-darkPurple font-bold ">My photos</span>
-      {existingPhotos && existingPhotos.length > 0 ? (
-        <div className=" w-full grid-cols-3 grid gap-4">
-          {existingPhotos.map((x) => (
-            <Image
-              onClick={() => handleDeletePhoto(x)}
-              src={replaceAddresseQuality(x)}
-              alt="Picture of your gallery"
-              width={400}
-              height={400}
-              className="h-[280px] w-full object-cover"
-            />
-          ))}
+      <div className="flex items-center justify-between">
+        <span className="text-3xl text-darkPurple font-bold ">My photos</span>
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => setIsOverlayDelete(!isOverlayDelete)}
+            className="px-3 md:px-4 py-1 md:py-2  text-bluePurple rounded-md md:rounded-lg  border-2 border-bluePurple duration-150 "
+          >
+            {isOverlayDelete ? "Cancel" : "Manage photos"}
+          </button>
           <button
             onClick={() => setDisplayPopupAddPhoto(true)}
-            className="rounded-lg text-lg  text-bluePurple px-14 font-semibold py-4 self-start duration-150 hover:scale-[101%] border-2 border-bluePurple"
+            className="px-3 md:px-4 py-1 md:py-2  text-bluePurple rounded-md md:rounded-lg  border-2 border-bluePurple duration-150 "
           >
             Add Photo
           </button>
         </div>
+      </div>
+      {existingPhotos && existingPhotos.length > 0 ? (
+        <div className=" w-full grid-cols-3 grid gap-4">
+          {existingPhotos.map((x) => (
+            <div className="h-[280px] w-full relative">
+              {isOverlayDelete && (
+                <div className="absolute top-0 left-0 h-full w-full duration-150 bg-[#ffffff65] flex items-center justify-center  ">
+                  <button
+                    className="px-3 md:px-4 py-1 md:py-2  text-bluePurple bg-white rounded-md md:rounded-lg  border-2 border-bluePurple duration-150 "
+                    onClick={() => handleDeletePhoto(x)}
+                  >
+                    Delete
+                  </button>
+                </div>
+              )}{" "}
+              <Image
+                src={replaceAddresseQuality(x)}
+                alt="Picture of your gallery"
+                width={400}
+                height={400}
+                className="h-[280px] w-full object-cover"
+              />
+            </div>
+          ))}
+        </div>
       ) : (
         <div className="w-full h-full flex justify-center items-center flex-col gap-4">
           <span className="text-2xl duration-150">No photo uploaded</span>
-          <button
-            onClick={() => setDisplayPopupAddPhoto(true)}
-            className="text-lg md:text-xl font-bold text-white bg-bluePurple px-8 py-3 md:px-10 md:py-5 rounded-xl"
-          >
-            Add Photo
-          </button>
         </div>
       )}
     </div>

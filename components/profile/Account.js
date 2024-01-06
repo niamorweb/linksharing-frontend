@@ -74,12 +74,9 @@ export default function Account() {
           <button className="px-3 md:px-4 py-1 md:py-2 border-2  rounded-md md:rounded-lg bg-bluePurple text-white duration-150 hover:text-white hover:bg-bluePurple hover:border-white hover:scale-105 ">
             Update
           </button>
-        </div>
-
-        <div className="mt-10 flex flex-col gap-4">
           <button
             onClick={() => handleLogout()}
-            className="px-3 md:px-4 py-1 md:py-2  rounded-md md:rounded-lg bg-white text-bluePurple duration-150 hover:scale-[101%] border-2 border-bluePurple "
+            className="mt-10 -3 md:px-4 py-1 md:py-2  rounded-md md:rounded-lg bg-white text-bluePurple duration-150 hover:scale-[101%] border-2 border-bluePurple "
           >
             Logout
           </button>

@@ -139,7 +139,7 @@ input:checked + .slider:before {
   background-color: #3f41a6;
 }
 
-/* .input_connexion {
+.input_connexion {
   width: 100%;
   transition-duration: 150ms;
   padding: 10px 20px;
@@ -153,54 +153,6 @@ input:checked + .slider:before {
   box-shadow: 0 0 32px 0 rgba(99, 60, 255, 0.25);
   outline-color: #633cff;
 }
-
-.text-lg md:text-xl font-bold text-white bg-bluePurple px-8 py-3 md:px-10 md:py-5 rounded-xl {
-  font-size: 1.25rem;
-  font-weight: bold;
-  color: white;
-  background-color: #6b46c1;
-  padding: 0.75rem 2rem;
-  border-radius: 1rem;
-}
-
-.rounded-lg text-lg  text-bluePurple px-14 font-semibold py-4 self-start duration-150 hover:scale-[101%] border-2 border-bluePurple {
-  border-radius: 0.5rem;
-  font-size: 1.25rem;
-  color: #6b46c1;
-  padding: 1rem 3.5rem;
-  font-weight: 600;
-  align-self: flex-start;
-  transition-duration: 150ms;
-  border: 2px solid #6b46c1;
-}
-
-.rounded-lg text-lg  text-bluePurple px-14 font-semibold py-4 self-start duration-150 hover:scale-[101%] border-2 border-bluePurple:hover {
-  transform: scale(1.01);
-}
-
-.font-bold text-darkPurple text-4xl leading-10 md:text-6xl md:leading-[90%] {
-  font-weight: bold;
-  color: #553c9a;
-  font-size: 2.5rem;
-  line-height: 2.5rem;
-}
-
-.font-bold text-darkPurple text-4xl md:text-[48px] md:leading-[125%] {
-  font-weight: bold;
-  color: #553c9a;
-  font-size: 2.5rem;
-  line-height: 3.125rem;
-}
-
-.font-bold text-darkPurple text-4xl md:text-[48px] md:leading-[125%] {
-  font-size: 48px;
-  line-height: 125%;
-}
-
-.text-lg text-neutral-500 {
-  font-size: 1.25rem;
-  color: #a0aec0;
-} */
 
 .slick-prev:before,
 .slick-next:before {
